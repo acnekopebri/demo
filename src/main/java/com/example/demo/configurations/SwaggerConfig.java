@@ -19,14 +19,14 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .components(new Components().addSecuritySchemes("basicScheme",
                         new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")))
-                .info(new Info().title("Spring Boot Webflux Video Streaming Server API").version(appVersion)
+                .info(new Info().title("Blog Server API").version(appVersion)
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }
 
     @Bean
     public GroupedOpenApi videoOpenApi() {
         String[] paths = { "/api/**" };
-        return GroupedOpenApi.builder().group("video Annotated controller").pathsToMatch(paths)
+        return GroupedOpenApi.builder().group("posts").pathsToMatch(paths)
                 .build();
     }
 
