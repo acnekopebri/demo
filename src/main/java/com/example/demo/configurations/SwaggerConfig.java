@@ -24,9 +24,16 @@ public class SwaggerConfig {
     }
 
     @Bean
-    public GroupedOpenApi videoOpenApi() {
+    public GroupedOpenApi blogApi() {
         String[] paths = { "/api/**" };
         return GroupedOpenApi.builder().group("posts").pathsToMatch(paths)
+                .build();
+    }
+
+    @Bean
+    public GroupedOpenApi helloApi() {
+        String[] paths = { "/greetings/**" };
+        return GroupedOpenApi.builder().group("greetings").pathsToMatch(paths)
                 .build();
     }
 
