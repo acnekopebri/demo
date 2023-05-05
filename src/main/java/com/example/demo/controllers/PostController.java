@@ -2,6 +2,10 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Comment;
 import com.example.demo.entities.Post;
+import com.example.demo.model.request.AddCommentRequest;
+import com.example.demo.model.request.AddPostRequest;
+import com.example.demo.model.request.UpdateCommentRequest;
+import com.example.demo.model.request.UpdatePostRequest;
 import com.example.demo.services.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +31,13 @@ public class PostController {
     }
 
     @PostMapping
-    public Post createPost(@RequestBody Post post) {
-        return postService.createPost(post);
+    public Post createPost(@RequestBody AddPostRequest postRequest) {
+        return postService.createPost(postRequest);
     }
 
     @PutMapping("/{id}")
-    public Post updatePost(@PathVariable Long id, @RequestBody Post post) {
-        return postService.updatePost(id, post);
+    public Post updatePost(@PathVariable Long id, @RequestBody UpdatePostRequest postRequest) {
+        return postService.updatePost(id, postRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -42,8 +46,8 @@ public class PostController {
     }
 
     @PostMapping("/{id}/comments")
-    public Comment addCommentToPost(@PathVariable Long id, @RequestBody Comment comment) {
-        return postService.addCommentToPost(id, comment);
+    public Comment addCommentToPost(@PathVariable Long id, @RequestBody AddCommentRequest commentRequest) {
+        return postService.addCommentToPost(id, commentRequest);
     }
 
     @GetMapping("/{id}/comments")
@@ -52,7 +56,8 @@ public class PostController {
     }
 
     @PutMapping("/{postId}/comments/{commentId}")
-    public Comment updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody Comment comment) {
+    public Comment updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody
+    UpdateCommentRequest comment) {
         return postService.updateComment(postId, commentId, comment);
     }
 

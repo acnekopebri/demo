@@ -24,5 +24,11 @@ public class Comment {
 
     @Column(name = "post_id")
     private Long postId;
+
+    @Override
+    public String toString() {
+        return "Comment{" + "id=" + id + ", content='" + content + '\'' + ", authorId=" + authorId + ", postId="
+                + postId + '}';
+    }
 }
 
