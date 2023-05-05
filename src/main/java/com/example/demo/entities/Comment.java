@@ -1,9 +1,11 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "comments")
@@ -17,8 +19,10 @@ public class Comment {
 
     private String content;
 
+    @Column(name = "author_id")
     private Long authorId;
 
+    @Column(name = "post_id")
     private Long postId;
 }
 
