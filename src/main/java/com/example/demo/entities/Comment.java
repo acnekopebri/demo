@@ -17,12 +17,8 @@ public class Comment {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
+    private Long authorId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
-    private Post post;
+    private Long postId;
 }
 

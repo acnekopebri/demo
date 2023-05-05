@@ -53,7 +53,7 @@ public class PostService {
     public Comment addCommentToPost(Long postId, Comment comment) {
         Post post = postRepository.findById(postId).orElse(null);
         if (post != null) {
-            comment.setPost(post);
+            comment.setPostId(post.getId());
             return commentRepository.save(comment);
         }
         return null;
@@ -62,14 +62,14 @@ public class PostService {
     public List<Comment> getAllCommentsForPost(Long postId) {
         Post post = postRepository.findById(postId).orElse(null);
         if (post != null) {
-            return commentRepository.findByPost(post);
+            return commentRepository.findByPostId(postId);
         }
         return null;
     }
 
     public Comment updateComment(Long postId, Long commentId, Comment updatedComment) {
         Comment comment = commentRepository.findById(commentId).orElse(null);
-        if (comment != null && comment.getPost().getId().equals(postId)) {
+        if (comment != null && comment.getPostId().equals(postId)) {
             comment.setContent(updatedComment.getContent());
             return commentRepository.save(comment);
         }
@@ -78,7 +78,7 @@ public class PostService {
 
     public boolean deleteComment(Long postId, Long commentId) {
         Comment comment = commentRepository.findById(commentId).orElse(null);
-        if (comment != null && comment.getPost().getId().equals(postId)) {
+        if (comment != null && comment.getPostId().equals(postId)) {
             commentRepository.delete(comment);
             return true;
         }
